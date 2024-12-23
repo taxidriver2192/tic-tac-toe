@@ -13,7 +13,7 @@ class GamePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        //
     }
 
     /**
@@ -21,7 +21,7 @@ class GamePolicy
      */
     public function view(User $user, Game $game): bool
     {
-        return false;
+        //
     }
 
     /**
@@ -29,7 +29,12 @@ class GamePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        //
+    }
+
+    public function join(User $user, Game $game): bool
+    {
+        return $game->player_one_id !== $user->id && $game->player_two_id === null;
     }
 
     /**
@@ -37,7 +42,7 @@ class GamePolicy
      */
     public function update(User $user, Game $game): bool
     {
-        return false;
+        //
     }
 
     /**
@@ -45,7 +50,7 @@ class GamePolicy
      */
     public function delete(User $user, Game $game): bool
     {
-        return false;
+        //
     }
 
     /**
@@ -53,7 +58,7 @@ class GamePolicy
      */
     public function restore(User $user, Game $game): bool
     {
-        return false;
+        //
     }
 
     /**
@@ -61,6 +66,6 @@ class GamePolicy
      */
     public function forceDelete(User $user, Game $game): bool
     {
-        return false;
+        //
     }
 }
