@@ -57,6 +57,8 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
+        $game->load(['playerOne', 'playerTwo']);
+
         return inertia('Games/Show', compact('game'));
     }
 
@@ -73,7 +75,14 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $data = $request->validate([
+            'state' => ['required', 'array', 'size:9'],
+            'state.*' => ['integer', 'between:-1,1'],
+        ]);
+
+        $game->update($data);
+
+        return to_route('games.show', $game);
     }
 
     /**
